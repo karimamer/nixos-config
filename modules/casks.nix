@@ -13,6 +13,7 @@ _:
 
   # Entertainment Tools
   "spotify"
+  "raycast"
 
   # Productivity Tools
   "raycast"

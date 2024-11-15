@@ -5,11 +5,8 @@ with pkgs; [
   zed-editor
   neovim
   alacritty
-  bat
   btop
-  coreutils
-  killall
-  neofetch
+  fastfetch
   openssh
   sqlite
   wget
@@ -19,13 +16,6 @@ with pkgs; [
   docker
   docker-compose
 
-  # Media-related packages
-  emacs-all-the-icons-fonts
-  ffmpeg
-  fd
-  font-awesome
-  hack-font
-  meslo-lgs-nf
 
   # Text and terminal utilities
 
@@ -34,9 +24,18 @@ with pkgs; [
   ripgrep
   tree
   tmux
-  unrar
-  unzip
-  zsh-powerlevel10k
+
+  just
+  bat
+  zoxide
+  eza
+  ripgrep
+
+  jnv
+  aria2
+
+  neovim
+  neovide
 
   # Python packages
   pyenv
