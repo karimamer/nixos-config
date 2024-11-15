@@ -35,7 +35,6 @@ with pkgs; [
   aria2
 
   neovim
-  neovide
 
   # Python packages
   pyenv
