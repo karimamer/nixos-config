@@ -1,6 +1,5 @@
 {
   description = "karim's macos config";
-
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
     darwin = {
@@ -28,54 +27,42 @@
     };
     catppuccin.url = "github:catppuccin/nix";
   };
-  outputs =
-    {
-      nixpkgs,
-      home-manager,
-      darwin,
-      catppuccin,
-      nix-homebrew,
-      homebrew-bundle,
-      homebrew-core,
-      homebrew-cask,
-      ...
-    }:
-    {
-      darwinConfigurations = {
-        earlymoon = darwin.lib.darwinSystem {
-          system = "aarch64-darwin";
-          modules = [
-            ./modules/darwin.nix
-            home-manager.darwinModules.home-manager
-            {
-              home-manager.useGlobalPkgs = true;
-              home-manager.useUserPackages = true;
-              home-manager.users.karim = {
-                imports = [
-                  ./modules
-                  catppuccin.homeManagerModules.catppuccin
-                ];
+  outputs = { nixpkgs, home-manager, darwin, catppuccin, nix-homebrew, homebrew-bundle, homebrew-core, homebrew-cask, ... }: {
+    darwinConfigurations = {
+      earlymoon = darwin.lib.darwinSystem {
+        system = "aarch64-darwin";
+        modules = [
+          ./modules/darwin.nix
+          home-manager.darwinModules.home-manager
+          nix-homebrew.darwinModules.nix-homebrew  # Add this line
+          {
+            home-manager.useGlobalPkgs = true;
+            home-manager.useUserPackages = true;
+            home-manager.users.karim = {
+              imports = [
+                ./modules
+                catppuccin.homeManagerModules.catppuccin
+              ];
+            };
+            nix-homebrew = {
+              enable = true;
+              user = "karim";
+              taps = {
+                "homebrew/homebrew-core" = homebrew-core;
+                "homebrew/homebrew-cask" = homebrew-cask;
+                "homebrew/homebrew-bundle" = homebrew-bundle;
               };
-              nix-homebrew = {
-                enable = true;
-                user = "karim";
-                taps = {
-                  "homebrew/homebrew-core" = homebrew-core;
-                  "homebrew/homebrew-cask" = homebrew-cask;
-                  "homebrew/homebrew-bundle" = homebrew-bundle;
-                };
-                mutableTaps = false;
-                autoMigrate = true;
-                enableRosetta = true;
-              };
-
-              users.users.karim = {
-                name = "karim";
-                home = "/Users/karim";
-              };
-            }
-          ];
-        };
+              mutableTaps = false;
+              autoMigrate = true;
+              enableRosetta = true;
+            };
+            users.users.karim = {
+              name = "karim";
+              home = "/Users/karim";
+            };
+          }
+        ];
       };
     };
+  };
 }
