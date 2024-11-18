@@ -14,11 +14,11 @@
   programs.zsh.enable = true;
 
   system.defaults = {
-  dock = {
-    tilesize = 50;
-    orientation = "bottom";
-    autohide = false;
-  };
+    dock = {
+        tilesize = 50;
+        orientation = "bottom";
+        autohide = false;
+    };
 
 
     CustomUserPreferences."com.apple.screencapture" = {
