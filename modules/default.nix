@@ -11,6 +11,7 @@ let
     ./fzf.nix
     ./nix.nix
     ./eza.nix
+    ./zsh.nix
   ];
 in
 {

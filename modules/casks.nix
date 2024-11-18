@@ -1,5 +1,5 @@
 # casks.nix
-{ lib }:
+_:
 [
   "docker"
   "discord"

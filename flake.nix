@@ -42,7 +42,7 @@
               enable = true;
               casks = import ./modules/casks.nix { inherit pkgs lib; };
             };
-
+            nixpkgs.config.allowUnfree = true;
             home-manager.useGlobalPkgs = true;
             home-manager.useUserPackages = true;
             home-manager.users.karim = { config, pkgs, ... }: {
