@@ -1,35 +1,22 @@
 { config, pkgs, ... }:
-let
-  modules = [
-    ./bat.nix
-    ./git.nix
-    ./ssh.nix
-    ./pkgs.nix
-    ./yazi.nix
-    ./zoxide.nix
-    ./fastfetch.nix
-    ./fzf.nix
-    ./nix.nix
-    ./eza.nix
-    ./zsh.nix
-    ./starship.nix
-    ./wezterm.nix
-    ./alacritty.nix
-  ];
-in
 {
-  imports = modules;
-  programs.zsh.enable = true;
-  xdg.dataHome = "${config.home.homeDirectory}/.local/share";
-  programs.home-manager.enable = true;
-  home.stateVersion = "24.05";
+  imports = [
+    ./system.nix
+  ];
 
+  # Basic Darwin system configuration
+  system.defaults.dock.autohide = true;
+  system.defaults.NSGlobalDomain.AppleKeyboardUIMode = 3;
+  system.stateVersion = 4;
+}
 
-  # System Configuration for macOS Applications
+# modules/darwin/system.nix
+{ config, pkgs, username, ... }:
+{
   system.activationScripts.applications.text = let
     env = pkgs.buildEnv {
       name = "system-applications";
-      paths = config.home.packages;
+      paths = config.home-manager.users.${username}.home.packages;
       pathsToLink = "/Applications";
     };
   in

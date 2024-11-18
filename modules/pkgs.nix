@@ -45,5 +45,7 @@ in
     # macOS specific
     arc-browser
     dockutil
+
+    mkalias
   ] ++ fontPackages;
 }

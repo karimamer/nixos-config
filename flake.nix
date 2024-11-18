@@ -33,6 +33,7 @@
       earlymoon = darwin.lib.darwinSystem {
         system = "aarch64-darwin";
         modules = [
+          ./modules/applications.nix
           ./modules/darwin.nix
           home-manager.darwinModules.home-manager
           nix-homebrew.darwinModules.nix-homebrew
