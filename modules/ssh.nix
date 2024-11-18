@@ -1,6 +1,6 @@
 { config, lib, pkgs, ... }:
 let
-  user = config.home.username;
+  user = config.home.karim;
 in
 {
   programs.ssh = {

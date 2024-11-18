@@ -27,6 +27,7 @@
     };
     catppuccin.url = "github:catppuccin/nix";
   };
+
   outputs = { nixpkgs, home-manager, darwin, catppuccin, nix-homebrew, homebrew-bundle, homebrew-core, homebrew-cask, ... }: {
     darwinConfigurations = {
       earlymoon = darwin.lib.darwinSystem {
@@ -34,16 +35,23 @@
         modules = [
           ./modules/darwin.nix
           home-manager.darwinModules.home-manager
-          nix-homebrew.darwinModules.nix-homebrew  # Add this line
-          {
+          nix-homebrew.darwinModules.nix-homebrew
+          ({ config, pkgs, lib, ... }: {
+            # System-level Homebrew configuration
+            homebrew = {
+              enable = true;
+              casks = import ./modules/casks.nix { inherit pkgs lib; };
+            };
+
             home-manager.useGlobalPkgs = true;
             home-manager.useUserPackages = true;
-            home-manager.users.karim = {
+            home-manager.users.karim = { config, pkgs, ... }: {
               imports = [
                 ./modules
                 catppuccin.homeManagerModules.catppuccin
               ];
             };
+
             nix-homebrew = {
               enable = true;
               user = "karim";
@@ -56,11 +64,12 @@
               autoMigrate = true;
               enableRosetta = true;
             };
+
             users.users.karim = {
               name = "karim";
               home = "/Users/karim";
             };
-          }
+          })
         ];
       };
     };
