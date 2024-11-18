@@ -14,6 +14,7 @@ let
     ./zsh.nix
     ./starship.nix
     ./wezterm.nix
+    ./alacritty.nix
   ];
 in
 {

@@ -14,11 +14,6 @@
   programs.zsh.enable = true;
 
   system.defaults = {
-    dock = {
-      tilesize = 20;
-      orientation = "left";
-      autohide = true;
-    };
 
     CustomUserPreferences."com.apple.screencapture" = {
       location = "~/Documents/screenshots";
