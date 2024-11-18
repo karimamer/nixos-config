@@ -1,5 +1,5 @@
 {
-  description = "Darwin System Configuration";
+  description = "karim's macos config";
 
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
@@ -28,71 +28,54 @@
     };
     catppuccin.url = "github:catppuccin/nix";
   };
-
-  outputs = { self, darwin, nixpkgs, home-manager, nix-homebrew,
-              homebrew-bundle, homebrew-core, homebrew-cask, catppuccin, ... }:
-    let
-      user = "karim";
-      system = "aarch64-darwin";
-
-      mkApp = scriptName: {
-        type = "app";
-        program = toString (nixpkgs.legacyPackages.${system}.writeScript "app-${scriptName}" ''
-          #!/usr/bin/env bash
-          PATH=${nixpkgs.legacyPackages.${system}.git}/bin:$PATH
-          exec darwin-rebuild ${scriptName} --flake .#default
-        '');
-      };
-    in {
-      darwinConfigurations.default = darwin.lib.darwinSystem {
-        inherit system;
-        modules = [
-          home-manager.darwinModules.home-manager
-          nix-homebrew.darwinModules.nix-homebrew
-          {
-            home-manager = {
-              useGlobalPkgs = true;
-              useUserPackages = true;
-              users.${user} = {
+  outputs =
+    {
+      nixpkgs,
+      home-manager,
+      darwin,
+      catppuccin,
+      nix-homebrew,
+      homebrew-bundle,
+      homebrew-core,
+      homebrew-cask,
+      ...
+    }:
+    {
+      darwinConfigurations = {
+        earlymoon = darwin.lib.darwinSystem {
+          system = "aarch64-darwin";
+          modules = [
+            ./modules/darwin.nix
+            home-manager.darwinModules.home-manager
+            {
+              home-manager.useGlobalPkgs = true;
+              home-manager.useUserPackages = true;
+              home-manager.users.karim = {
                 imports = [
+                  ./modules
                   catppuccin.homeManagerModules.catppuccin
                 ];
-                nixpkgs.config.allowUnfree = true;
               };
-            };
-            nixpkgs.config.allowUnfree = true;
-            nix-homebrew = {
-              enable = true;
-              user = user;
-              taps = {
-                "homebrew/homebrew-core" = homebrew-core;
-                "homebrew/homebrew-cask" = homebrew-cask;
-                "homebrew/homebrew-bundle" = homebrew-bundle;
+              nix-homebrew = {
+                enable = true;
+                user = "karim";
+                taps = {
+                  "homebrew/homebrew-core" = homebrew-core;
+                  "homebrew/homebrew-cask" = homebrew-cask;
+                  "homebrew/homebrew-bundle" = homebrew-bundle;
+                };
+                mutableTaps = false;
+                autoMigrate = true;
+                enableRosetta = true;
               };
-              mutableTaps = false;
-              autoMigrate = true;
-              enableRosetta = true;
-            };
-          }
-          ./hosts/darwin
-        ];
-      };
 
-      # Apps for common commands
-      apps.${system} = {
-        build = mkApp "build";
-        build-switch = mkApp "switch";
-        check = mkApp "check";
-      };
-
-      # Devshell for development environment
-      devShells.${system}.default = let
-        pkgs = nixpkgs.legacyPackages.${system};
-      in pkgs.mkShell {
-        nativeBuildInputs = with pkgs; [ bashInteractive git ];
-        shellHook = ''
-          export EDITOR=vim
-        '';
+              users.users.karim = {
+                name = "karim";
+                home = "/Users/karim";
+              };
+            }
+          ];
+        };
       };
     };
 }
