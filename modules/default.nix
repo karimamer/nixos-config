@@ -13,6 +13,7 @@ let
     ./eza.nix
     ./zsh.nix
     ./starship.nix
+    ./wezterm.nix
   ];
 in
 {
