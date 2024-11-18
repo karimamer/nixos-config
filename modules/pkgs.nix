@@ -15,7 +15,6 @@ in
     sqlite
     wget
     zip
-    wezterm
 
     # Cloud-related tools and SDKs
     docker
