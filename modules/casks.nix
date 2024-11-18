@@ -11,5 +11,4 @@ _:
   "firefox"
   "mullvadvpn"
   "enpass"
-  "wezterm"
 ]
