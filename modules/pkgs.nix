@@ -1,5 +1,8 @@
 { pkgs, ... }:
 
+let
+  fontPackages = import ./fonts.nix { inherit pkgs; };
+in
 {
   home.packages = with pkgs; [
     # General packages for development and system management
@@ -42,5 +45,5 @@
     # macOS specific
     arc-browser
     dockutil
-  ];
+  ] ++ fontPackages;
 }

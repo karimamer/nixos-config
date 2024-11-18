@@ -12,6 +12,7 @@ let
     ./nix.nix
     ./eza.nix
     ./zsh.nix
+    ./starship.nix
   ];
 in
 {
