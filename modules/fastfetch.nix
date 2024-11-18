@@ -3,7 +3,7 @@
     enable = true;
   };
   home.file = {
-    ".configs/fastfetch" = {
+    ".config/fastfetch" = {
       source = ./configs/fastfetch;
     };
   };

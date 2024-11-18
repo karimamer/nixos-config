@@ -4,7 +4,7 @@
   };
 
   home.file = {
-    ".configs/wezterm" = {
+    ".config/wezterm" = {
       source = ./configs/wezterm;
     };
   };

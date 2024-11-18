@@ -1,56 +1,73 @@
 { ... }:
-
 {
   programs.alacritty = {
     enable = true;
     settings = {
-      cursor.style = "Block";
       window = {
-        opacity = 1.0;
+        opacity = 0.8;  # Matching your WezTerm opacity
         padding = {
-          x = 24;
-          y = 24;
+          x = 50;  # Matching your WezTerm padding
+          y = 50;
         };
-        decorations = "full";
+        decorations = "buttonless";  # Similar to WezTerm's RESIZE
         dynamic_padding = true;
+        blur = true;  # Equivalent to macos_window_background_blur
       };
+
       font = {
         normal = {
-          family = "MesloLGS NF";
+          family = "JetBrainsMono Nerd Font";
           style = "Regular";
         };
-        size = if pkgs.stdenv.hostPlatform.isDarwin then 14 else 10;
+        size = 12.5;  # Matching your WezTerm font size
       };
-      window.title = "Terminal";
-      window.class = {
-        instance = "Alacritty";
-        general = "Alacritty";
+
+      cursor = {
+        style = {
+          shape = "Underline";
+          blinking = "On";
+        };
+        blink_interval = 750;  # Standard blink rate
+        unfocused_hollow = true;
       };
+
+      # Catppuccin Mocha theme colors
       colors = {
         primary = {
-          background = "#1f2528";
-          foreground = "#c0c5ce";
+          background = "#1E1E2E";
+          foreground = "#CDD6F4";
         };
+
         normal = {
-          black = "#1f2528";
-          red = "#ec5f67";
-          green = "#99c794";
-          yellow = "#fac863";
-          blue = "#6699cc";
-          magenta = "#c594c5";
-          cyan = "#5fb3b3";
-          white = "#c0c5ce";
+          black = "#45475A";
+          red = "#F38BA8";
+          green = "#A6E3A1";
+          yellow = "#F9E2AF";
+          blue = "#89B4FA";
+          magenta = "#F5C2E7";
+          cyan = "#94E2D5";
+          white = "#BAC2DE";
         };
+
         bright = {
-          black = "#65737e";
-          red = "#ec5f67";
-          green = "#99c794";
-          yellow = "#fac863";
-          blue = "#6699cc";
-          magenta = "#c594c5";
-          cyan = "#5fb3b3";
-          white = "#d8dee9";
+          black = "#585B70";
+          red = "#F38BA8";
+          green = "#A6E3A1";
+          yellow = "#F9E2AF";
+          blue = "#89B4FA";
+          magenta = "#F5C2E7";
+          cyan = "#94E2D5";
+          white = "#A6ADC8";
         };
+      };
+
+      scrolling = {
+        history = 10000;
+        multiplier = 3;
+      };
+
+      selection = {
+        save_to_clipboard = true;
       };
     };
   };
