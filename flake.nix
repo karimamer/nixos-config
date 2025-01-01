@@ -40,6 +40,11 @@
             # System-level Homebrew configuration
             homebrew = {
               enable = true;
+              onActivation = {
+                autoUpdate = true;
+                cleanup = "uninstall";
+                upgrade = true;
+              };
               casks = import ./modules/casks.nix { inherit pkgs lib; };
             };
             nixpkgs.config.allowUnfree = true;
