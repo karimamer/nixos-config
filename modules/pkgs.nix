@@ -15,6 +15,7 @@ in
     sqlite
     wget
     zip
+    duckdb
 
     # Cloud-related tools and SDKs
     docker

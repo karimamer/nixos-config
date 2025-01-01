@@ -11,4 +11,5 @@ _:
   "firefox"
   "mullvadvpn"
   "enpass"
+  "ghostty"
 ]
