@@ -2,6 +2,8 @@
 _:
 [
   "docker"
+  "ghosttile"
+  "ghostty"
   "discord"
   "zoom"
   "syncthing"
@@ -11,5 +13,4 @@ _:
   "firefox"
   "mullvadvpn"
   "enpass"
-  "ghostty"
 ]
