@@ -2,7 +2,6 @@
 _:
 [
   "docker"
-  "ghostty"
   "discord"
   "zoom"
   "syncthing"
