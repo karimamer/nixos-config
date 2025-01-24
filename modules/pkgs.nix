@@ -16,6 +16,7 @@ in
     wget
     zip
     duckdb
+    ghostty
 
     # Cloud-related tools and SDKs
     docker
@@ -37,6 +38,7 @@ in
     # Python packages
     pyenv
     uv
+    obsidian
 
     # Rust
     rustup
