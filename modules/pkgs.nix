@@ -16,7 +16,7 @@ in
     wget
     zip
     duckdb
-    ghostty
+    ollama
 
     # Cloud-related tools and SDKs
     docker

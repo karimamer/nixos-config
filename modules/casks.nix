@@ -12,4 +12,5 @@ _:
   "mullvadvpn"
   "enpass"
   "zen-browser"
+  "chatbox"
 ]
